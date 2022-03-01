@@ -1,15 +1,8 @@
-import styled from "styled-components";
-
-const HeaderText = styled.h1`
-  color: red;
-  font-size: 2rem;
-`
+import { Router } from "./components/Router";
 
 function App() {
   return (
-    <div className="App">
-      <HeaderText>WS Weather</HeaderText>
-    </div>
+    <Router />
   );
 }
 
