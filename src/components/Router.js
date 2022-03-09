@@ -9,7 +9,7 @@ export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path="/" element={<Screen><Home /></Screen>} />
+                <Route exact path="/" element={<Screen><Home text="Hey there" /></Screen>} />
             </Routes>
         </BrowserRouter>
     );
