@@ -10,17 +10,18 @@ const Layout = styled.div`
 `
 
 const ScreenLayout = styled.div`
-  width: ${props => props.screenType === "tablet" ? `600px` : `400px`};
+  width: ${props => props.screenType === "tablet" ? `500px` : `400px`};
   height: 100%;
+  position: relative;
   
 `
 
 export const Screen = ({ children }) => {
-    const screenType = useScreenType();
+  const screenType = useScreenType();
 
-    return (
-        <Layout>
-            <ScreenLayout screenType={screenType} >{children}</ScreenLayout>
-        </Layout>
-    );
+  return (
+    <Layout>
+      <ScreenLayout screenType={screenType} >{children}</ScreenLayout>
+    </Layout>
+  );
 }
