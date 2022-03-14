@@ -12,7 +12,7 @@ const Layout = styled.div`
 const ScreenLayout = styled.div`
   width: ${props => props.screenType === "tablet" ? `600px` : `400px`};
   height: 100%;
-  background-color: red;
+  
 `
 
 export const Screen = ({ children }) => {
