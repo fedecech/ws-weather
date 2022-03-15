@@ -1,7 +1,48 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Draggable from "react-draggable";
-import { useState } from "react";
+import { useState, useRef } from "react";
+
+export const Modal = ({ children }) => {
+  let history = useNavigate();
+
+  // to remove deprecation error
+  const ref = useRef(null)
+
+  const [position, setPosition] = useState(() => {
+    return { x: 0, y: window.innerHeight * 0.2 };
+  });
+
+  let back = (e) => {
+    if (e.target.id === "bg") history(-1);
+  };
+
+  const handleStop = (e, data) => {
+    if (data.y <= 0)
+      setPosition((p) => {
+        return { ...p, y: window.innerHeight * 0.2 };
+      });
+    else if (data.y > window.innerHeight * 0.5) history(-1);
+  };
+
+  return (
+    <OuterWrapper onClick={back} id="bg">
+      <Draggable
+        axis="y"
+        handle=".handle"
+        onStop={handleStop}
+        position={position}
+        bounds={{ top: 20, bottom: window.innerHeight * 0.6 }}
+        nodeRef={ref}
+      >
+        <InnerWrapper id="inner w" ref={ref}>
+          <Handle className="handle" />
+          <Content>{children}</Content>
+        </InnerWrapper>
+      </Draggable>
+    </OuterWrapper>
+  );
+};
 
 const OuterWrapper = styled.div`
   position: absolute;
@@ -45,39 +86,3 @@ const Content = styled.div`
   justify-content: baseline;
   align-items: baseline;
 `;
-
-export const Modal = ({ children }) => {
-  let history = useNavigate();
-  const [position, setPosition] = useState(() => {
-    return { x: 0, y: window.innerHeight * 0.2 };
-  });
-
-  let back = (e) => {
-    if (e.target.id === "bg") history(-1);
-  };
-
-  const handleStop = (e, data) => {
-    if (data.y <= 0)
-      setPosition((p) => {
-        return { ...p, y: window.innerHeight * 0.2 };
-      });
-    else if (data.y > window.innerHeight * 0.5) history(-1);
-  };
-
-  return (
-    <OuterWrapper onClick={back} id="bg">
-      <Draggable
-        axis="y"
-        handle=".handle"
-        onStop={handleStop}
-        position={position}
-        bounds={{ top: 20, bottom: window.innerHeight * 0.6 }}
-      >
-        <InnerWrapper id="inner w">
-          <Handle className="handle" />
-          <Content>{children}</Content>
-        </InnerWrapper>
-      </Draggable>
-    </OuterWrapper>
-  );
-};

@@ -9,8 +9,95 @@ import img from "../assets/background.png";
 import { WaveIcon } from "../icons/WaveIcon";
 import { WindIcon } from "../icons/WindIcon";
 import { DropIcon } from "../icons/DropIcon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { useCurrentWeather } from "../hooks/useCurrentWeather";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+
+export const Home = () => {
+  const [search, setSearch] = useState(false);
+
+  const activateSearch = () => setSearch(true);
+  const deactivateSearch = () => setSearch(false);
+  const location = useLocation()
+  const weather = useCurrentWeather();
+
+  const bottomNavLinks = [
+    {
+      href: "/weather",
+      icon: (
+        <SunIcon
+          style={{ width: "30", heigth: "30", color: "white" }}
+          strokeWidth={1.5}
+        />
+      ),
+    },
+    {
+      href: "/sea",
+      icon: (
+        <DropIcon
+          style={{ width: "16", heigth: "16", color: "white" }}
+          strokeWidth={3}
+        />
+      ),
+    },
+    {
+      href: "/waves",
+      icon: (
+        <WaveIcon
+          style={{ width: "30", heigth: "30", color: "white" }}
+          strokeWidth={10}
+        />
+      ),
+    },
+    {
+      href: "/wind",
+      icon: <WindIcon style={{ width: "30", heigth: "30", color: "white" }} />,
+    },
+  ];
+
+  return (
+    <Wrapper>
+      <TopNavBar>
+        <MenuAlt2Icon style={{ width: "30", heigth: "30", color: "white" }} />
+        {search ? (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <input type="text" />
+            <button onClick={deactivateSearch}>
+              <XIcon style={{ width: "25", heigth: "25", color: "white" }} />
+            </button>
+          </div>
+        ) : (
+          <button onClick={activateSearch}>
+            <SearchIcon style={{ width: "25", heigth: "25", color: "white" }} />
+          </button>
+        )}
+      </TopNavBar>
+      <Image src={img} alt="background" />
+      <WeatherInfo>
+        {weather ? <><Temperature> {weather ? parseInt(weather.main.temp) : 28}&deg;</Temperature>
+          <Location>
+            {weather
+              ? weather.name + ", " + weather.sys.country
+              : "Loading location..."}
+          </Location>
+        </>
+          : <LoadingSpinner style={{ position: "absolute", top: '10%' }} />}
+      </WeatherInfo>
+      <BottomNavBar>
+        {bottomNavLinks.map((l) => (
+          <Link
+            key={l.href}
+            to={l.href}
+            state={{ backgroundLocation: location }}
+          >
+            {l.icon}
+          </Link>
+        ))}
+      </BottomNavBar>
+    </Wrapper>
+  );
+};
 
 const TopNavBar = styled.header`
   display: flex;
@@ -73,119 +160,3 @@ const Location = styled.p`
   font-weight: 300;
   font-size: 1rem;
 `;
-
-export const Home = () => {
-  const [search, setSearch] = useState(false);
-
-  const activateSearch = () => setSearch(true);
-  const deactivateSearch = () => setSearch(false);
-  const [position, setPosition] = useState(null);
-  const [weather, setWeather] = useState(null);
-
-  const location = useLocation();
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setPosition({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      },
-      (err) => alert(err.message)
-    );
-  }, []);
-
-  useEffect(() => {
-    if (position) {
-      // use https://cors-anywhere.herokuapp.com to remove cors error
-      fetch(
-        `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
-        // , {
-        //     method: "GET",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // }
-      ).then((d) => {
-        d.json().then((data) => {
-          setWeather(data);
-        });
-      });
-    }
-  }, [position]);
-
-  const bottomNavLinks = [
-    {
-      href: "/weather",
-      icon: (
-        <SunIcon
-          style={{ width: "30", heigth: "30", color: "white" }}
-          strokeWidth={1.5}
-        />
-      ),
-    },
-    {
-      href: "/sea",
-      icon: (
-        <DropIcon
-          style={{ width: "16", heigth: "16", color: "white" }}
-          strokeWidth={3}
-        />
-      ),
-    },
-    {
-      href: "/waves",
-      icon: (
-        <WaveIcon
-          style={{ width: "30", heigth: "30", color: "white" }}
-          strokeWidth={10}
-        />
-      ),
-    },
-    {
-      href: "/wind",
-      icon: <WindIcon style={{ width: "30", heigth: "30", color: "white" }} />,
-    },
-  ];
-
-  return (
-    <Wrapper>
-      <TopNavBar>
-        <MenuAlt2Icon style={{ width: "30", heigth: "30", color: "white" }} />
-        {search ? (
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input type="text" />
-            <button onClick={deactivateSearch}>
-              <XIcon style={{ width: "25", heigth: "25", color: "white" }} />
-            </button>
-          </div>
-        ) : (
-          <button onClick={activateSearch}>
-            <SearchIcon style={{ width: "25", heigth: "25", color: "white" }} />
-          </button>
-        )}
-      </TopNavBar>
-      <Image src={img} alt="background" />
-      <WeatherInfo>
-        <Temperature> {weather ? weather.main.temp : 28}&deg;</Temperature>
-        <Location>
-          {weather
-            ? weather.name + ", " + weather.sys.country
-            : "Loading location..."}
-        </Location>
-      </WeatherInfo>
-      <BottomNavBar>
-        {bottomNavLinks.map((l) => (
-          <Link
-            key={l.href}
-            to={l.href}
-            state={{ backgroundLocation: location }}
-          >
-            {l.icon}
-          </Link>
-        ))}
-      </BottomNavBar>
-    </Wrapper>
-  );
-};
