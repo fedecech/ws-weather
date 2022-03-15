@@ -95,12 +95,14 @@ export const Home = () => {
     useEffect(() => {
         if (position) {
             // use https://cors-anywhere.herokuapp.com to remove cors error
-            fetch(`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${process.env.REACT_APP_API_KEY}`, {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(d => {
+            fetch(`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
+            // , {
+            //     method: "GET",
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // }
+            ).then(d => {
                 d.json().then(data => {
                     setWeather(data)
                 })
@@ -145,7 +147,7 @@ export const Home = () => {
             </TopNavBar>
             <Image src={img} alt="background" />
             <WeatherInfo>
-                <Temperature>28&deg;</Temperature>
+                <Temperature> {weather ? weather.main.temp : 28}&deg;</Temperature>
                 <Location>{weather ? weather.name + ", " + weather.sys.country : "Loading location..."}</Location>
             </WeatherInfo>
             <BottomNavBar>
