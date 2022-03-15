@@ -1,5 +1,5 @@
 import { Router } from "./components/Router";
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom";
 import { Screen } from "./components/Screen";
 
 function App() {

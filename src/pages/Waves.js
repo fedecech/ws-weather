@@ -1,4 +1,3 @@
-
 export const Waves = () => {
-    return <div>Waves</div>
-}
+  return <div>Waves</div>;
+};

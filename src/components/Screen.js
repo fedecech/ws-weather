@@ -7,21 +7,20 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const ScreenLayout = styled.div`
-  width: ${props => props.screenType === "tablet" ? `500px` : `400px`};
+  width: ${(props) => (props.screenType === "tablet" ? `500px` : `400px`)};
   height: 100%;
   position: relative;
-  
-`
+`;
 
 export const Screen = ({ children }) => {
   const screenType = useScreenType();
 
   return (
     <Layout>
-      <ScreenLayout screenType={screenType} >{children}</ScreenLayout>
+      <ScreenLayout screenType={screenType}>{children}</ScreenLayout>
     </Layout>
   );
-}
+};

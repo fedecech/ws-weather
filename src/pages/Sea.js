@@ -1,4 +1,3 @@
-
 export const Sea = () => {
-    return <div>Sea</div>
-}
+  return <div>Sea</div>;
+};

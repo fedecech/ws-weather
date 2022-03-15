@@ -1,4 +1,3 @@
-
 export const Wind = () => {
-    return <div>Wind</div>
-}
+  return <div>Wind</div>;
+};
