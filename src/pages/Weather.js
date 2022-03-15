@@ -1,24 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
+import moment from "moment";
 
-const Today = styled.div`
-    background-color: $primary;
-    border-radius: 10px;
-    color: #fff;
-    margin-top: 20px;
-`
 
-const TodayInner = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 30px;
-`
+import "../index.scss"
 
-const TodayLeft = styled.div`
-
-`
 
 export const Weather = () => {
 
@@ -58,8 +45,52 @@ export const Weather = () => {
         }
     }, [position])
 
-    return <div>
+    return <div className="today">
+    <div className="today__inner">
+      <div className="today__left-content">
+        <h1>
+          {weather?weather.name:"London"} ({weather?weather.sys.country:"UK"})
+        </h1>
 
+        <h2>
+          <span>{weather?weather.temp_max.toFixed(0):28}&deg;C</span>
+          <span>{weather?weather.temp_min.toFixed(0):16}&deg;C</span>
+        </h2>
 
+        <div className="today__sun-times">
+          <div>
+            <span>Sunrise</span>
+            <span>
+              {/* {moment.unix(weather.sys.sunrise).tz(timezone).format("LT")} */}
+              {weather?weather.sys.sunrise:"4:00 am"}
+
+            </span>
+          </div>
+
+          <div>
+            <span>Sunset</span>
+            <span>
+              {/* {moment.unix(weather.sys.sunset).tz(timezone).format("LT")} */}
+              {weather ? weather.sys.sunset: "6:00 pm"}
+              
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div lassName="today__right-content">
+        <div className="today__icon-wrapper">
+          <div>
+        {weather?<img
+              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+              alt="Weather Icon"
+              layout="fill"
+            />: "Still fetching"}
+          </div>
+        </div>
+
+        <h3>{weather?weather.weather[0].description:"still fetching"}</h3>
+      </div>
     </div>
+  </div>
 }
