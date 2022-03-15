@@ -1,14 +1,24 @@
-
-
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { useCurrentWeather } from "../hooks/useCurrentWeather";
 import "../index.scss";
 
 export const Weather = () => {
-
   const weather = useCurrentWeather();
 
-  if (!weather) return <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><LoadingSpinner /></div>
+  if (!weather)
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <div className="today">

@@ -19,7 +19,7 @@ export const Home = () => {
 
   const activateSearch = () => setSearch(true);
   const deactivateSearch = () => setSearch(false);
-  const location = useLocation()
+  const location = useLocation();
   const weather = useCurrentWeather();
 
   const bottomNavLinks = [
@@ -75,14 +75,21 @@ export const Home = () => {
       </TopNavBar>
       <Image src={img} alt="background" />
       <WeatherInfo>
-        {weather ? <><Temperature> {weather ? parseInt(weather.main.temp) : 28}&deg;</Temperature>
-          <Location>
-            {weather
-              ? weather.name + ", " + weather.sys.country
-              : "Loading location..."}
-          </Location>
-        </>
-          : <LoadingSpinner style={{ position: "absolute", top: '10%' }} />}
+        {weather ? (
+          <>
+            <Temperature>
+              {" "}
+              {weather ? parseInt(weather.main.temp) : 28}&deg;
+            </Temperature>
+            <Location>
+              {weather
+                ? weather.name + ", " + weather.sys.country
+                : "Loading location..."}
+            </Location>
+          </>
+        ) : (
+          <LoadingSpinner style={{ position: "absolute", top: "10%" }} />
+        )}
       </WeatherInfo>
       <BottomNavBar>
         {bottomNavLinks.map((l) => (

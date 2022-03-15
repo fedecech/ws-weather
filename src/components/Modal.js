@@ -7,7 +7,7 @@ export const Modal = ({ children }) => {
   let history = useNavigate();
 
   // to remove deprecation error
-  const ref = useRef(null)
+  const ref = useRef(null);
 
   const [position, setPosition] = useState(() => {
     return { x: 0, y: window.innerHeight * 0.2 };
