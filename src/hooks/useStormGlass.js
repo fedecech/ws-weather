@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 export const useStormGlass = () => {
   const [stormGlass, setStormGlass] = useState(null);
   const geoData = useGeoLocation();
-  const params = 'waveHeight,waveDirection,waterTemperature,swellHeight,swellPeriod';
+  const params =
+    "waveHeight,waveDirection,waterTemperature,swellHeight,swellPeriod";
 
   useEffect(() => {
     if (geoData?.coords) {
@@ -14,7 +15,7 @@ export const useStormGlass = () => {
         {
           method: "GET",
           headers: {
-            'Authorization': `${process.env.STORM_GLASS_API_KEY}`,
+            Authorization: `${process.env.STORM_GLASS_API_KEY}`,
           },
         }
       ).then((d) => {
