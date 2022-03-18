@@ -4,7 +4,7 @@ import { LoadingSpinner } from "../components/LoadingSpinner";
 export const Sea = () => {
   const data = useWeather();
 
-  if (!data) return <LoadingSpinner />
+  if (!data) return <LoadingSpinner />;
 
   return (
     <div>

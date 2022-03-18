@@ -15,9 +15,9 @@ export const Wind = () => {
   };
 
   const data = useWeather();
-  const hourlyWeather = getHourlyWeather(data?.hourly)
+  const hourlyWeather = getHourlyWeather(data?.hourly);
 
-  if (!data || !hourlyWeather) return <LoadingSpinner />
+  if (!data || !hourlyWeather) return <LoadingSpinner />;
 
   return (
     <div className="windPage">

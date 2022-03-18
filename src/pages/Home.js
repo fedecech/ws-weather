@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {
-  MenuAlt2Icon,
-  SearchIcon,
-  SunIcon,
-} from "@heroicons/react/outline";
+import { MenuAlt2Icon, SearchIcon, SunIcon } from "@heroicons/react/outline";
 import img from "../assets/background.png";
 import { WaveIcon } from "../icons/WaveIcon";
 import { WindIcon } from "../icons/WindIcon";

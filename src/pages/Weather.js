@@ -19,8 +19,8 @@ export const Weather = () => {
   const weather = useCurrentWeather();
   const data = useWeather();
 
-  const hourlyWeather = getHourlyWeather(data?.hourly)
-  const weeklyWeather = data?.daily
+  const hourlyWeather = getHourlyWeather(data?.hourly);
+  const weeklyWeather = data?.daily;
 
   if (!weather || !data)
     return (
@@ -87,8 +87,9 @@ export const Weather = () => {
               <div className="hourly__box-wrapper" key={weather.dt}>
                 <div className="hourly__box">
                   <span
-                    className={`hourly__time ${index === 0 ? "hourly__time--now" : ""
-                      }`}
+                    className={`hourly__time ${
+                      index === 0 ? "hourly__time--now" : ""
+                    }`}
                   >
                     {index === 0 ? "Now" : moment.unix(weather.dt).format("LT")}
                   </span>

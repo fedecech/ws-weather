@@ -37,7 +37,9 @@ export const Modal = ({ children }) => {
       >
         <InnerWrapper id="inner w" ref={ref}>
           <Handle className="handle" />
-          <Content maxWidth={ref.current?.offsetWidth || '100%'}>{children}</Content>
+          <Content maxWidth={ref.current?.offsetWidth || "100%"}>
+            {children}
+          </Content>
         </InnerWrapper>
       </Draggable>
     </OuterWrapper>
