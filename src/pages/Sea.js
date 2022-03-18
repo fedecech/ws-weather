@@ -1,8 +1,10 @@
-import "../index.scss";
 import { useWeather } from "../hooks/useWeather";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export const Sea = () => {
   const data = useWeather();
+
+  if (!data) return <LoadingSpinner />
 
   return (
     <div>

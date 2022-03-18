@@ -37,7 +37,7 @@ export const Modal = ({ children }) => {
       >
         <InnerWrapper id="inner w" ref={ref}>
           <Handle className="handle" />
-          <Content>{children}</Content>
+          <Content maxWidth={ref.current?.offsetWidth || '100%'}>{children}</Content>
         </InnerWrapper>
       </Draggable>
     </OuterWrapper>
@@ -85,4 +85,5 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: baseline;
   align-items: baseline;
+  /* max-width: ${(props) => props.maxWidth}; */
 `;

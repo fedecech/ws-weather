@@ -1,9 +1,11 @@
 import moment from "moment";
-import "../index.scss";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 import { useWeather } from "../hooks/useWeather";
 
 export const Wind = () => {
   const getHourlyWeather = (hourlyData) => {
+    if (!hourlyData) return null;
+
     const endOfDay = moment().endOf("day").valueOf();
     const eodTimeStamp = Math.floor(endOfDay / 1000);
 
@@ -13,34 +15,10 @@ export const Wind = () => {
   };
 
   const data = useWeather();
-  var hourlyWeather =
-    data != null
-      ? getHourlyWeather(data.hourly)
-      : [
-          {
-            dt: 1618315200,
-            temp: 282.58,
-            feels_like: 280.4,
-            pressure: 1019,
-            humidity: 68,
-            dew_point: 276.98,
-            uvi: 1.4,
-            clouds: 19,
-            visibility: 306,
-            wind_speed: 4.12,
-            wind_deg: 296,
-            wind_gust: 7.33,
-            weather: [
-              {
-                id: 801,
-                main: "Clouds",
-                description: "few clouds",
-                icon: "02d",
-              },
-            ],
-            pop: 0,
-          },
-        ];
+  const hourlyWeather = getHourlyWeather(data?.hourly)
+
+  if (!data || !hourlyWeather) return <LoadingSpinner />
+
   return (
     <div className="windPage">
       {hourlyWeather.length > 0 &&
