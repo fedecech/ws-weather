@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { Sea } from "../pages/Sea";
+import { Search } from "../pages/Search";
 import { Waves } from "../pages/Waves";
 import { Weather } from "../pages/Weather";
 import { Wind } from "../pages/Wind";
@@ -61,6 +62,18 @@ export const Router = () => {
           />
         </Routes>
       )}
+      {backgroundLocation && (
+        <Routes>
+          <Route
+            path="/search"
+            element={
+              <Modal>
+                <Search />
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
 
       <Routes location={backgroundLocation || location}>
         <Route exact path="/" element={<Home />} />
@@ -68,6 +81,7 @@ export const Router = () => {
         <Route exact path="/weather" element={<Weather />} />
         <Route exact path="/sea" element={<Sea />} />
         <Route exact path="/waves" element={<Waves />} />
+        <Route exact path="/search" element={<Search />} />
       </Routes>
     </div>
   );
