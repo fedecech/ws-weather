@@ -63,12 +63,12 @@ export const Weather = () => {
               </div>
             </div>
           </div>
-
           <div className="today__right-content">
             <div className="today__icon-wrapper">
               <div>
                 <img
                   src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+
                   alt="Weather Icon"
                   layout="fill"
                 />
@@ -84,12 +84,12 @@ export const Weather = () => {
         <div className="hourly__inner">
           {hourlyWeather.length > 0 &&
             hourlyWeather.map((weather, index) => (
+
               <div className="hourly__box-wrapper" key={weather.dt}>
                 <div className="hourly__box">
                   <span
-                    className={`hourly__time ${
-                      index === 0 ? "hourly__time--now" : ""
-                    }`}
+                    className={`hourly__time ${index === 0 ? "hourly__time--now" : ""
+                      }`}
                   >
                     {index === 0 ? "Now" : moment.unix(weather.dt).format("LT")}
                   </span>
@@ -151,6 +151,7 @@ export const Weather = () => {
                           src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                           alt="Weather Icon"
                           layout="fill"
+
                         />
                       </div>
                     </div>

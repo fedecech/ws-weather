@@ -55,7 +55,7 @@ const OuterWrapper = styled.div`
   background: rgba(1, 1, 1, 0.4);
   z-index: 100;
   width: 100%;
-  height: 100%;
+  height: 80%;
   color: white;
   display: flex;
   align-items: flex-end;
@@ -66,7 +66,7 @@ const InnerWrapper = styled.div`
   z-index: 100;
   margin-top: 20%;
   height: 100%;
-  width: 100%;
+  width: 92%;
   display: flex;
   align-items: center;
   padding: 1rem;
