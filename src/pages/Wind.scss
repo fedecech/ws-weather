@@ -1,0 +1,32 @@
+.windPage {
+    align-self: center;
+    overflow-y: scroll;
+}
+.wind-card {
+    background-color: white;
+    width: 350px;
+    border-radius: 30px;
+    margin: 20px;
+    color: black;
+}
+
+.card-inner {
+    display: flex;
+    justify-content: space-around;
+}
+.card-details h4{
+    font-weight: 300;
+}
+.time{
+font-weight: bold;
+}
+.box-image {
+    height: 100px;
+    width: 80px;
+}
+
+.card-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
