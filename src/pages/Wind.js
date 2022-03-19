@@ -4,7 +4,6 @@ import { useWeather } from "../hooks/useWeather";
 import wind from "../assets/wind.png";
 import "./Wind.scss";
 
-
 export const Wind = () => {
   const getHourlyWeather = (hourlyData) => {
     if (!hourlyData) return null;
@@ -26,39 +25,21 @@ export const Wind = () => {
     <div className="windPage">
       {hourlyWeather.length > 0 &&
         hourlyWeather.map((weather, index) => (
-
-
           <div className="wind-card" key={weather.dt}>
-
             <div className="card-inner">
-              <img
-                className="box-image"
-                src={wind}
-                alt="Wind Image"
-
-              />
+              <img className="box-image" src={wind} alt="Wind Image" />
               <div className="card-details">
-                <span
-                  className="time">
+                <span className="time">
                   {index === 0 ? "Now" : moment.unix(weather.dt).format("LT")}
                 </span>
-                <h4>
-                  Wind Speed: {weather.wind_speed}
-                </h4>
+                <h4>Wind Speed: {weather.wind_speed}</h4>
 
-                <h4>
-                  Wind Degrees: {weather.wind_deg}
-                </h4>
+                <h4>Wind Degrees: {weather.wind_deg}</h4>
 
-                <h4>
-                  Wind Gust: {weather.wind_gust}
-                </h4>
-
-
+                <h4>Wind Gust: {weather.wind_gust}</h4>
               </div>
             </div>
           </div>
-
         ))}
     </div>
   );
