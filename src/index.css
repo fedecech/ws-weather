@@ -8,19 +8,16 @@ body,
   overflow: hidden;
 }
 
-
 *::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
-
 }
 
 *::-webkit-scrollbar-thumb {
   background: linear-gradient(90deg, #ff8a00, #e52e71);
   border-radius: 10px;
-  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25), inset -2px -2px 2px rgba(0, 0, 0, .25);
-
-
+  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+    inset -2px -2px 2px rgba(0, 0, 0, 0.25);
 }
 
 /* body::-webkit-scrollbar-track {
