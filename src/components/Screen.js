@@ -19,8 +19,8 @@ export const Screen = ({ children }) => {
   const screenType = useScreenType();
 
   return (
-    <Layout>
-      <ScreenLayout screenType={screenType}>{children}</ScreenLayout>
+    <Layout id="lay">
+      <ScreenLayout id="slay" screenType={screenType}>{children}</ScreenLayout>
     </Layout>
   );
 };

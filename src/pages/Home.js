@@ -109,11 +109,16 @@ const BottomNavBar = styled.nav`
   align-items: center;
   padding: 1rem 1rem;
   border-radius: 1rem 1rem;
-  background-color: #5e1a75;
   position: absolute;
   bottom: 1rem;
   right: 1rem;
   left: 1rem;
+  background: rgba( 131, 51, 158, 0.6 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 50px );
+  -webkit-backdrop-filter: blur( 50px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 `;
 
 const Wrapper = styled.div`

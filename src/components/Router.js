@@ -13,7 +13,7 @@ export const Router = () => {
   const backgroundLocation = location.state?.backgroundLocation;
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div style={{ width: "100%", height: "100%", position: "relative" }}>
       {backgroundLocation && (
         <Routes>
           <Route

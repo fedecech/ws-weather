@@ -1,15 +1,17 @@
 import { useGeoLocation } from "./useGeoLocation";
 import { useEffect, useState } from "react";
 
-export const useWeather = () => {
+export const useWeather = (lat, long) => {
   const [weather, setWeather] = useState(null);
   const geoData = useGeoLocation();
 
+
   useEffect(() => {
-    if (geoData?.coords) {
+    if (geoData?.coords || (lat && long)) {
+
       // use https://cors-anywhere.herokuapp.com to remove cors error
       fetch(
-        `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/onecall?lat=${geoData.coords.latitude}&lon=${geoData.coords.longitude}&appid=${process.env.REACT_APP_API_KEY}&units=metric`,
+        `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/onecall?lat=${geoData.coords.latitude || lat}&lon=${geoData.coords.longitude || long}&appid=${process.env.REACT_APP_API_KEY}&units=metric`,
         {
           method: "GET",
           headers: {
@@ -19,10 +21,10 @@ export const useWeather = () => {
       ).then((d) => {
         d.json().then((data) => {
           setWeather(data);
-        });
-      });
+        }).catch(e => console.log(e));
+      }).catch(e => console.log(e));
     }
-  }, [geoData?.coords]);
+  }, [geoData?.coords, lat, long]);
 
   return weather;
 };

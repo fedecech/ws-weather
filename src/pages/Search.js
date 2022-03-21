@@ -1,8 +1,10 @@
-import { XIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon, PlusIcon, XIcon } from "@heroicons/react/outline";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import cities from "../cities.json";
+import { useSelectedLocationStore } from "../stores/useSelectedLocationStore";
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,7 +36,7 @@ const List = styled.ul`
   margin-bottom: 40px;
 `;
 
-const Item = styled.li`
+const Item = styled.button`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -43,6 +45,9 @@ const Item = styled.li`
 
 export const Search = () => {
   const [query, setQuery] = useState("");
+  const { setLocation, reset } = useSelectedLocationStore();
+  const navigator = useNavigate();
+
   return (
     <Wrapper>
       <InputWrapper>
@@ -57,19 +62,35 @@ export const Search = () => {
           <XIcon style={{ width: "20px", height: "20px", color: "white" }} />
         </button>
       </InputWrapper>
+      <Item onClick={() => reset()}>
+        <div style={{ display: 'flex', alignItems: "center" }}>
+          <LocationMarkerIcon style={{ width: '20px', height: '20px', marginRight: '10px' }} />
+          <span>
+            Use your current location
+          </span>
+        </div>
+      </Item>
       <List>
         {query !== "" &&
           cities
-            .filter((c) => c.country.includes(query) || c.name.includes(query))
+            .filter((c) => c.country.toLowerCase().includes(query.toLowerCase()) || c.name.toLowerCase().includes(query.toLowerCase()))
             .splice(0, 20)
-            .map((c) => (
-              <Item>
-                <span>{c.name}</span>
-                <span
-                  style={{ color: "rgb(175, 174, 174)", marginBottom: "4px" }}
-                >
-                  {c.country}
-                </span>
+            .map((c, i) => (
+              <Item key={i} onClick={() => {
+                setLocation(c.name, c.country.toLowerCase())
+                navigator("/")
+              }}>
+                <div style={{ display: "flex", justifyContent: "space-between", width: '100%' }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+                    <span>{c.name}</span>
+                    <span
+                      style={{ color: "rgb(175, 174, 174)", marginBottom: "4px" }}
+                    >
+                      {c.country}
+                    </span>
+                  </div>
+                  <PlusIcon style={{ width: '20px', height: '20px' }} />
+                </div>
                 <div
                   style={{
                     width: "100%",

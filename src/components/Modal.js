@@ -66,11 +66,13 @@ const InnerWrapper = styled.div`
   z-index: 100;
   margin-top: 20%;
   height: 100%;
-  width: 92%;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
   flex-direction: column;
+  position: relative;
 `;
 const Handle = styled.button`
   width: 2rem;
@@ -78,6 +80,7 @@ const Handle = styled.button`
   background: white;
   border-radius: 3px;
   margin-bottom: 1rem;
+  z-index: 2000;
 `;
 
 const Content = styled.div`
@@ -87,5 +90,6 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: baseline;
   align-items: baseline;
+  position: relative;
   /* max-width: ${(props) => props.maxWidth}; */
 `;
