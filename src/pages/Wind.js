@@ -39,7 +39,7 @@ export const Wind = () => {
     <Wrapper>
       {hourlyWeather.length > 0 &&
         hourlyWeather.map((weather, index) => (
-          <CardWrapper>
+          <CardWrapper key={weather.dt}>
             <Card>
               <Title>
                 {index === 0 ? "Now" : moment.unix(weather.dt).format("LT")}
