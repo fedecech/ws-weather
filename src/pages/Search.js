@@ -9,9 +9,12 @@ import { useSelectedLocationStore } from "../stores/useSelectedLocationStore";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   overflow-x: hidden;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
+
 const InputWrapper = styled.div`
   width: 100%;
   background-color: rgba(38, 15, 57);
@@ -58,11 +61,16 @@ export const Search = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button onClick={() => setQuery("")}>
+        <button onClick={() => setQuery("")} style={{ marginRight: "4px" }}>
           <XIcon style={{ width: "20px", height: "20px", color: "white" }} />
         </button>
       </InputWrapper>
-      <Item onClick={() => reset()}>
+      <Item
+        onClick={() => {
+          reset();
+          navigator("/");
+        }}
+      >
         <div style={{ display: "flex", alignItems: "center" }}>
           <LocationMarkerIcon
             style={{ width: "20px", height: "20px", marginRight: "10px" }}
