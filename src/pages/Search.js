@@ -63,33 +63,55 @@ export const Search = () => {
         </button>
       </InputWrapper>
       <Item onClick={() => reset()}>
-        <div style={{ display: 'flex', alignItems: "center" }}>
-          <LocationMarkerIcon style={{ width: '20px', height: '20px', marginRight: '10px' }} />
-          <span>
-            Use your current location
-          </span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <LocationMarkerIcon
+            style={{ width: "20px", height: "20px", marginRight: "10px" }}
+          />
+          <span>Use your current location</span>
         </div>
       </Item>
       <List>
         {query !== "" &&
           cities
-            .filter((c) => c.country.toLowerCase().includes(query.toLowerCase()) || c.name.toLowerCase().includes(query.toLowerCase()))
+            .filter(
+              (c) =>
+                c.country.toLowerCase().includes(query.toLowerCase()) ||
+                c.name.toLowerCase().includes(query.toLowerCase())
+            )
             .splice(0, 20)
             .map((c, i) => (
-              <Item key={i} onClick={() => {
-                setLocation(c.name, c.country.toLowerCase())
-                navigator("/")
-              }}>
-                <div style={{ display: "flex", justifyContent: "space-between", width: '100%' }}>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <Item
+                key={i}
+                onClick={() => {
+                  setLocation(c.name, c.country.toLowerCase());
+                  navigator("/");
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                    }}
+                  >
                     <span>{c.name}</span>
                     <span
-                      style={{ color: "rgb(175, 174, 174)", marginBottom: "4px" }}
+                      style={{
+                        color: "rgb(175, 174, 174)",
+                        marginBottom: "4px",
+                      }}
                     >
                       {c.country}
                     </span>
                   </div>
-                  <PlusIcon style={{ width: '20px', height: '20px' }} />
+                  <PlusIcon style={{ width: "20px", height: "20px" }} />
                 </div>
                 <div
                   style={{

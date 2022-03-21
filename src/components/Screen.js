@@ -20,7 +20,9 @@ export const Screen = ({ children }) => {
 
   return (
     <Layout id="lay">
-      <ScreenLayout id="slay" screenType={screenType}>{children}</ScreenLayout>
+      <ScreenLayout id="slay" screenType={screenType}>
+        {children}
+      </ScreenLayout>
     </Layout>
   );
 };

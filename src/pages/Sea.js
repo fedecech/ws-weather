@@ -10,22 +10,25 @@ import visibility from "../assets/visibility.png";
 import { useCurrentWeather } from "../hooks/useCurrentWeather";
 
 export const Sea = () => {
-  const w = useCurrentWeather()
+  const w = useCurrentWeather();
   const data = useWeather(w?.coords?.lat, w?.coords?.lon);
 
-  if (!data || !w) return <div
-    style={{
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <LoadingSpinner />
-  </div>
+  if (!data || !w)
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <LoadingSpinner />
+      </div>
+    );
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="grid-container">

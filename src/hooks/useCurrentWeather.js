@@ -10,10 +10,9 @@ export const useCurrentWeather = () => {
   useEffect(() => {
     if (geoData?.coords) {
       // use https://cors-anywhere.herokuapp.com to remove cors error
-      const queryString = location ?
-        `q=${location}`
-        :
-        `lat=${geoData.coords.latitude}&lon=${geoData.coords.longitude}`
+      const queryString = location
+        ? `q=${location}`
+        : `lat=${geoData.coords.latitude}&lon=${geoData.coords.longitude}`;
 
       fetch(
         `https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?${queryString}&appid=${process.env.REACT_APP_API_KEY}&units=metric`,
@@ -23,11 +22,15 @@ export const useCurrentWeather = () => {
             "Content-Type": "application/json",
           },
         }
-      ).then((d) => {
-        d.json().then((data) => {
-          setWeather(data);
-        }).catch(e => console.log(e));
-      }).catch(e => console.log(e));
+      )
+        .then((d) => {
+          d.json()
+            .then((data) => {
+              setWeather(data);
+            })
+            .catch((e) => console.log(e));
+        })
+        .catch((e) => console.log(e));
     }
   }, [geoData?.coords, location]);
 
