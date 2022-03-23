@@ -11,13 +11,12 @@ export const useStormGlass = (lat, long) => {
     if (geoData?.coords || (long && lat)) {
       // use https://cors-anywhere.herokuapp.com to remove cors error
       fetch(
-        `https://cors-anywhere.herokuapp.com/api.stormglass.io/v2/weather/point?lat=${
-          geoData.coords.latitude || lat
+        `https://cors-anywhere.herokuapp.com/api.stormglass.io/v2/weather/point?lat=${geoData.coords.latitude || lat
         }&lng=${geoData.coords.longitude || long}&params=${params}`,
         {
           method: "GET",
           headers: {
-            Authorization: `${process.env.STORM_GLASS_API_KEY}`,
+            Authorization: `${process.env.REACT_APP_STORM_GLASS_API_KEY}`,
           },
         }
       )
