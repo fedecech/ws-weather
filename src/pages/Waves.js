@@ -14,11 +14,14 @@ const days = [
 ]
 
 export const Waves = () => {
-  // const w = useCurrentWeather();
+  const w = useStormGlass();
+  
 
 
   return (
+    
     <div style={{ width: '90%', height: '100%', alignSelf: 'center', overflow: 'auto' }}>
+    
       <table className='table'>
         <thead>
           <tr>
@@ -31,12 +34,15 @@ export const Waves = () => {
           </tr>
         </thead>
         <tbody>
-          {data.hours.map(d => {
+          {data?.hours.filter((item,index) => index<24).map(d => {
+            const dateNumbers = d.time.split("T")
             const date = new Date(d.time)
-            const day = date.getDay()
+            // const day = date.getDay()
             return (
               <tr>
-                <td>{days[day]} {day} {date.getHours()}h</td>
+                <td key={d.time}>
+                  {/* {days[day]} {day}  */}
+                  {dateNumbers[0]} {date.getHours()}h</td>
                 <td>{parseFloat(d.swellHeight.sg).toFixed(1)}</td>
                 <td>{parseFloat(d.swellPeriod.sg).toFixed(1)}</td>
                 <td>{parseFloat(d.waterTemperature.sg).toFixed(1)}</td>
