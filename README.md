@@ -9,19 +9,9 @@ npm install
 2. Run development server
 
 ```
-npm run dev
+npm run start
 ```
 
-3. Install prettier extension for VSCode (to format code).
-4. Set default formatter:
+3. Visit [https://cors-anywhere.herokuapp.com/corsdemo](this link) and click on `request temporary access to the demo server` (This is used to prevent cors error because of local development)
 
-- <kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (With a `.js` file open)
-- `Format Document With`
-- `Configure Default Formatter`
-- `Prettier - Code Formatter`
-
-5. Format on save:
-
-   - `Settings > Text Editor > Formatting > Format on Save (enable it)`
-
-6. Install `vscode-styled-components` extension for VSCode (for autocompletion in template strings)
+4. When visiting the app allow the usage of location and refresh the page.
