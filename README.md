@@ -1,6 +1,6 @@
 # Setup
 
-1. Install dependecies
+1. Install dependencies
 
 ```
 npm install
