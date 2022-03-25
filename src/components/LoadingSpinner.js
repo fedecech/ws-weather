@@ -1,3 +1,9 @@
+
+/**
+ * Loang spinner component for displaying loading state while data is not defined
+ * @param {any} props 
+ * @returns {any}
+ */
 export const LoadingSpinner = ({ ...props }) => {
   return (
     <svg

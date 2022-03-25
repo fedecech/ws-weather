@@ -5,6 +5,7 @@ import "./Weather.scss";
 import { useWeather } from "../hooks/useWeather";
 
 export const Weather = () => {
+  // Parsing info from use weather
   const getHourlyWeather = (hourlyData) => {
     if (!hourlyData) return null;
 
@@ -16,6 +17,7 @@ export const Weather = () => {
     return todaysData;
   };
 
+  // get current location selected coords and pass those to other hooks (that don't support search with city names)
   const weather = useCurrentWeather();
 
   const data = useWeather(weather?.coords?.lat, weather?.coords?.lon);

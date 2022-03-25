@@ -7,6 +7,10 @@ import { Weather } from "../pages/Weather";
 import { Wind } from "../pages/Wind";
 import { Modal } from "./Modal";
 
+/**
+ * Router using react-router-dom. It uses useLocation to show the background page when a modal is displyed
+ * @returns {any}
+ */
 export const Router = () => {
   const location = useLocation();
 

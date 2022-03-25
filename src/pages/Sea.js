@@ -10,6 +10,7 @@ import visibility from "../assets/visibility.png";
 import { useCurrentWeather } from "../hooks/useCurrentWeather";
 
 export const Sea = () => {
+  // get current location selected coords and pass those to other hooks (that don't support search with city names)
   const w = useCurrentWeather();
   const data = useWeather(w?.coords?.lat, w?.coords?.lon);
 

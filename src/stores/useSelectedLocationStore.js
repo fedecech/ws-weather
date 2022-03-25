@@ -1,5 +1,8 @@
 import create from "zustand";
 
+/**
+ * Hook to tore selected location info
+ */
 export const useSelectedLocationStore = create((set) => ({
   location: null,
   setLocation: (city, countryCode) =>

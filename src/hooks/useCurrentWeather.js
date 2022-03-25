@@ -2,6 +2,10 @@ import { useGeoLocation } from "./useGeoLocation";
 import { useEffect, useState } from "react";
 import { useSelectedLocationStore } from "../stores/useSelectedLocationStore";
 
+/**
+ * Hook to get current location or selected location weather
+ * @returns {object}
+ */
 export const useCurrentWeather = () => {
   const [weather, setWeather] = useState(null);
   const geoData = useGeoLocation();

@@ -9,7 +9,9 @@ import { useCurrentWeather } from "../hooks/useCurrentWeather";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export const Home = () => {
+  // for routing not coords info
   const location = useLocation();
+  
   const weather = useCurrentWeather();
 
   const bottomNavLinks = [

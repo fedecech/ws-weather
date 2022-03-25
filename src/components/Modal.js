@@ -3,6 +3,11 @@ import styled from "styled-components";
 import Draggable from "react-draggable";
 import { useState, useRef } from "react";
 
+/**
+ * Routed modal component that display children inside a draggable canvas
+ * @param {any} props 
+ * @returns {any}
+ */
 export const Modal = ({ children }) => {
   let history = useNavigate();
 

@@ -33,6 +33,11 @@ const defaultGeoLocationOptions = {
   when: true,
 };
 
+/**
+ * Hook to get current location and handle authrization of location service
+ * @param {*} geoLocationOptions 
+ * @returns {any}
+ */
 export const useGeoLocation = (
   geoLocationOptions = defaultGeoLocationOptions
 ) => {

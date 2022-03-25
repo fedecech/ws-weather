@@ -15,6 +15,11 @@ const ScreenLayout = styled.div`
   position: relative;
 `;
 
+/**
+ * Component to set the width depending on the current screen width (currently just uses a fix width -> mobile)
+ * @param {any} props 
+ * @returns {any}
+ */
 export const Screen = ({ children }) => {
   const screenType = useScreenType();
 

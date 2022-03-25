@@ -1,6 +1,12 @@
 import { useGeoLocation } from "./useGeoLocation";
 import { useEffect, useState } from "react";
 
+/**
+ * Hook to get info about waves and more specific data related to surfers. If lat and long not provided it will use current location coords.
+ * @param {*} lat Latitude
+ * @param {*} long Longitude
+ * @returns {any}
+ */
 export const useStormGlass = (lat, long) => {
   const [stormGlass, setStormGlass] = useState(null);
   const geoData = useGeoLocation();

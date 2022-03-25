@@ -1,6 +1,12 @@
 import { useGeoLocation } from "./useGeoLocation";
 import { useEffect, useState } from "react";
 
+/**
+ * Hook to get weather data for following days. If lat and long not provided it will use current location coords.
+ * @param {number} lat Latitude
+ * @param {number} long Longitude
+ * @returns {any}
+ */
 export const useWeather = (lat, long) => {
   const [weather, setWeather] = useState(null);
   const geoData = useGeoLocation();
